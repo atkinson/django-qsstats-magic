@@ -69,7 +69,7 @@ class QuerySetStats(object):
         dt, end = _to_datetime(start), _to_datetime(end)
         while dt < end:
             value = method(dt, date_field, aggregate)
-            stat_list.append((dt, value,))
+            stat_list.append([dt, value])
             dt = dt + relativedelta(**{interval : 1})
         return stat_list
 
