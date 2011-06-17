@@ -94,7 +94,7 @@ class QuerySetStats(object):
         dt = start
         while dt < end:
             value = data.get(dt, 0)
-            stat_list.append((dt, value,))
+            stat_list.append([dt, value])
             dt = dt + relativedelta(**{interval : 1})
         return stat_list
 
