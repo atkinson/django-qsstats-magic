@@ -53,7 +53,15 @@ def get_interval_sql(date_field, interval, engine):
             'weeks': "DATE_FORMAT(DATE_SUB(`"+date_field+"`, INTERVAL(WEEKDAY(`"+date_field+"`)) DAY), '%%Y-%%m-%%d')",
             'months': "DATE_FORMAT(`" + date_field +"`, '%%Y-%%m-01')",
             'years': "DATE_FORMAT(`" + date_field +"`, '%%Y-01-01')",
-        }
+        },
+        'postgres': {
+            'minutes': "to_char(" + date_field + ", 'YYYY-MM-DD HH24:MI')",
+            'hours': "to_char(" + date_field + ", 'YYYY-MM-DD HH24:00')",
+            'days': "to_char(" + date_field + ", 'YYYY-MM-DD')",
+            'weeks': "to_char(" + date_field + ", 'IW')",
+            'months': "to_char(" + date_field + ", 'YYYY-MM-01')",
+            'years': "to_char(" + date_field + ", 'YYYY-01-01')",
+        },
     }
 
     try:
